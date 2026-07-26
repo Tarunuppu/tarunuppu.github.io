@@ -1,0 +1,5 @@
+{
+  "label": "Tool use",
+  "position": 4,
+  "link": { "type": "generated-index", "description": "Function calling, MCP, graph-based control flow, and human-in-the-loop." }
+}

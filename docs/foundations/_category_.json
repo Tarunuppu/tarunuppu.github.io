@@ -1,0 +1,5 @@
+{
+  "label": "Foundations",
+  "position": 1,
+  "link": { "type": "generated-index", "description": "RAG, LangChain, and LangGraph — the vocabulary the rest of the notes build on." }
+}

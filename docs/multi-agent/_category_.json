@@ -1,0 +1,5 @@
+{
+  "label": "Multi-agent",
+  "position": 3,
+  "link": { "type": "generated-index", "description": "What changes when more than one agent is involved." }
+}
