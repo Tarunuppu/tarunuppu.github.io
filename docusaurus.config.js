@@ -6,7 +6,29 @@ import {themes as prismThemes} from 'prism-react-renderer';
 const config = {
   title: 'Tarun Uppu',
   tagline: 'Notes on system design, AI agents, and backend engineering',
-  favicon: 'img/favicon.ico',
+  favicon: 'img/favicon.svg',
+
+  headTags: [
+    {
+      tagName: 'link',
+      attributes: {rel: 'preconnect', href: 'https://fonts.googleapis.com'},
+    },
+    {
+      tagName: 'link',
+      attributes: {
+        rel: 'preconnect',
+        href: 'https://fonts.gstatic.com',
+        crossorigin: 'anonymous',
+      },
+    },
+  ],
+
+  stylesheets: [
+    {
+      href: 'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=IBM+Plex+Mono:wght@400;500&display=swap',
+      type: 'text/css',
+    },
+  ],
 
   future: {
     v4: true,
@@ -56,11 +78,9 @@ const config = {
         respectPrefersColorScheme: true,
       },
       navbar: {
+        // Wordmark only — a set-in-type name reads more considered here than a
+        // letter-in-a-box icon, which is the default-template look.
         title: 'Tarun Uppu',
-        logo: {
-          alt: 'Tarun Uppu logo',
-          src: 'img/logo.svg',
-        },
         items: [
           {
             type: 'docSidebar',
@@ -81,7 +101,9 @@ const config = {
         ],
       },
       footer: {
-        style: 'dark',
+        // Footer colours are theme-aware in custom.css, so it follows the
+        // page rather than being pinned dark.
+        style: 'light',
         links: [
           {
             title: 'Notes',
@@ -90,6 +112,7 @@ const config = {
               {label: 'Agent patterns', to: '/agent-patterns/overview'},
               {label: 'Multi-agent', to: '/multi-agent/overview'},
               {label: 'Tool use', to: '/tool-use/overview'},
+              {label: 'Low-level design', to: '/low-level-design/oop-foundations'},
             ],
           },
           {
@@ -103,8 +126,8 @@ const config = {
         copyright: `Copyright © ${new Date().getFullYear()} Tarun Uppu.`,
       },
       prism: {
-        theme: prismThemes.github,
-        darkTheme: prismThemes.dracula,
+        theme: prismThemes.oneLight,
+        darkTheme: prismThemes.oneDark,
       },
     }),
 };
