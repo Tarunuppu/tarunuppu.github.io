@@ -135,4 +135,8 @@ The diagram is a design tool, not just documentation. If drawing it makes one li
 
 ## What to skip
 
-UML also has state machines, activity diagrams, use-case diagrams, and more. They have their place, but low-level design rarely reaches for them and an interview almost never asks. The working skill is to turn a problem into a class diagram of the types and their relationships, then a sequence diagram for each important flow. Those two carry the large majority of what it takes to communicate a design.
+UML also has state machines, activity diagrams, use-case diagrams, and more. They have their place, but low-level design rarely reaches for them. The working skill is to turn a problem into a class diagram of the types and their relationships, then a sequence diagram for each important flow. Those two carry the large majority of what it takes to communicate a design.
+
+:::tip Interview note
+Class diagrams do most of the work under interview conditions; a sequence diagram is worth sketching only for a genuinely non-trivial flow. The other diagram types almost never come up.
+:::

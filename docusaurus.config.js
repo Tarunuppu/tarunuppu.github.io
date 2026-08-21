@@ -30,8 +30,12 @@ const config = {
     },
   ],
 
+  // Off deliberately: the v4 flag parses .md as plain CommonMark, which turns
+  // admonitions (:::tip) into literal text on the page. Setting
+  // markdown.format does not override it — only this does. Revisit when
+  // actually upgrading to v4, at which point admonitions need .mdx files.
   future: {
-    v4: true,
+    v4: false,
   },
 
   // Served on the custom domain. The apex is canonical; www redirects to it.

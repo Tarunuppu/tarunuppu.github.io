@@ -233,6 +233,72 @@ div[class*='codeBlockTitle'] {
   border-bottom: 1px solid var(--rule);
 }
 
+/* ----------------------------------------------------------- admonitions */
+
+/* Infima ships these in saturated green/blue/red, which breaks the
+   one-accent rule. Note/tip/info all fold into the site accent; only warning
+   and danger get their own hue, since there the colour carries meaning. */
+.theme-admonition {
+  --admonition-accent: var(--ifm-color-primary);
+  --admonition-bg: rgba(27, 95, 168, 0.05);
+
+  background: var(--admonition-bg);
+  /* Infima also tints the body text to match the alert type (green for tip,
+     red for danger). Only the rule and label should carry colour. */
+  color: var(--ifm-font-color-base);
+  border: 0;
+  border-left: 2px solid var(--admonition-accent);
+  border-radius: 0 5px 5px 0;
+  box-shadow: none;
+  padding: 1.1rem 1.3rem;
+  margin: 2rem 0;
+}
+
+.theme-admonition-warning {
+  --admonition-accent: #a1660a;
+  --admonition-bg: rgba(161, 102, 10, 0.06);
+}
+
+.theme-admonition-danger {
+  --admonition-accent: #a83232;
+  --admonition-bg: rgba(168, 50, 50, 0.06);
+}
+
+[data-theme='dark'] .theme-admonition {
+  --admonition-bg: rgba(138, 180, 240, 0.07);
+}
+
+[data-theme='dark'] .theme-admonition-warning {
+  --admonition-accent: #d9a441;
+  --admonition-bg: rgba(217, 164, 65, 0.08);
+}
+
+[data-theme='dark'] .theme-admonition-danger {
+  --admonition-accent: #e08585;
+  --admonition-bg: rgba(224, 133, 133, 0.08);
+}
+
+/* The label reads as a micro-heading, matching the footer and TOC labels. */
+.theme-admonition [class*='admonitionHeading'] {
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--admonition-accent);
+  margin-bottom: 0.5rem;
+}
+
+.theme-admonition [class*='admonitionIcon'] svg {
+  width: 0.95rem;
+  height: 0.95rem;
+  fill: var(--admonition-accent);
+}
+
+.theme-admonition [class*='admonitionContent'] > p:last-child {
+  margin-bottom: 0;
+}
+
 /* ------------------------------------------------------------- diagrams */
 
 /* Must match the fontFamily handed to mermaid in docusaurus.config.js, so the
