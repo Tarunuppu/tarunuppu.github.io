@@ -34,15 +34,15 @@ const config = {
     v4: true,
   },
 
-  // Using GitHub Pages for now (no custom domain yet).
-  // Name your repo exactly "tarunuppu.github.io" so it serves at the root
-  // with no path prefix — that way baseUrl stays '/' even after you add a
-  // custom domain later; you'll only need to change the url below at that point.
-  url: 'https://tarunuppu.github.io',
+  // Served on the custom domain. The apex is canonical; www redirects to it.
+  // The domain is pinned by static/CNAME, which Docusaurus copies to the build
+  // root so the Pages deploy keeps it on every run.
+  // baseUrl stays '/' because the repo is named "tarunuppu.github.io" and so
+  // serves from the root with no path prefix.
+  url: 'https://tarunuppu.com',
   baseUrl: '/',
 
-  // TODO: replace 'tarunuppu' with your actual GitHub username if different
-  organizationName: 'tarunuppu',
+  organizationName: 'Tarunuppu',
   projectName: 'tarunuppu.github.io',
 
   onBrokenLinks: 'throw',
@@ -60,7 +60,7 @@ const config = {
         docs: {
           routeBasePath: '/', // serve docs at the site root, e.g. tarunuppu.dev/agent-patterns
           sidebarPath: './sidebars.js',
-          editUrl: 'https://github.com/tarunuppu/tarunuppu.github.io/tree/main/',
+          editUrl: 'https://github.com/Tarunuppu/tarunuppu.github.io/tree/main/',
         },
         blog: false, // not used — this is a docs-only site
         theme: {
