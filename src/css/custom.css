@@ -233,6 +233,41 @@ div[class*='codeBlockTitle'] {
   border-bottom: 1px solid var(--rule);
 }
 
+/* ------------------------------------------------------------- diagrams */
+
+/* Must match the fontFamily handed to mermaid in docusaurus.config.js, so the
+   text it renders is the text it measured. Keeps the site serif out of the SVG. */
+.docusaurus-mermaid-container,
+.docusaurus-mermaid-container svg,
+.docusaurus-mermaid-container text,
+.docusaurus-mermaid-container tspan {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica,
+    Arial, sans-serif !important;
+}
+
+.docusaurus-mermaid-container {
+  margin: 2rem 0;
+  text-align: center;
+}
+
+.docusaurus-mermaid-container svg {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Mermaid puts labels in a foreignObject whose width it computes a few pixels
+   short of the text it then renders, so the last character gets clipped
+   ("Money" -> "Mone"). Letting the label overflow its box fixes it without
+   touching the layout mermaid worked out. */
+.docusaurus-mermaid-container foreignObject,
+.docusaurus-mermaid-container foreignObject > * {
+  overflow: visible !important;
+}
+
+.docusaurus-mermaid-container foreignObject > * {
+  white-space: nowrap !important;
+}
+
 /* --------------------------------------------------------------- navbar */
 
 .navbar {

@@ -47,6 +47,13 @@ const config = {
 
   onBrokenLinks: 'throw',
 
+  // Renders ```mermaid fences as diagrams (class and sequence diagrams in the
+  // low-level design notes).
+  markdown: {
+    mermaid: true,
+  },
+  themes: ['@docusaurus/theme-mermaid'],
+
   i18n: {
     defaultLocale: 'en',
     locales: ['en'],
@@ -76,6 +83,18 @@ const config = {
       image: 'img/docusaurus-social-card.jpg',
       colorMode: {
         respectPrefersColorScheme: true,
+      },
+      // Greyscale diagrams — the site's palette is near-monochrome, and
+      // mermaid's default theme fights it with saturated fills.
+      mermaid: {
+        theme: {light: 'neutral', dark: 'dark'},
+        options: {
+          // A system font, deliberately: mermaid sizes each box by measuring
+          // its text, and a webfont that arrives after that measurement makes
+          // the text outgrow the box and clip. System fonts are there already.
+          fontFamily:
+            '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
+        },
       },
       navbar: {
         // Wordmark only — a set-in-type name reads more considered here than a
