@@ -177,6 +177,48 @@ That is Proxy: a stand-in with the same interface as the real object, controllin
 The roles are a subject interface, the real subject, and a proxy that shares the interface and wraps the real subject. Reach for it when you need to interpose on access — lazy loading, caching, permission checks, remote calls — without callers knowing. It looks like Decorator, but the intent differs: a decorator adds new behavior and is built to stack, while a proxy controls access to one real object and usually stands alone.
 :::
 
+## Bridge
+
+Two things vary independently. A notification can be an urgent alert or a routine reminder, and each can go out over SMS, email, or push. Model both with inheritance and you get a class for every pairing — `UrgentSms`, `UrgentEmail`, `ReminderPush`, and so on — a set that grows as the product of the two lists every time either gains a member.
+
+Bridge splits the one exploding hierarchy into two that vary on their own, and connects them by composition. In this example, one side is an abstract class holding the shared structure and the other is an interface it delegates the varying work to — that split is a convention for this domain, not a structural requirement of the pattern:
+
+```java
+interface Channel {                         // the implementation side: how it goes out
+    void deliver(String title, String body);
+}
+
+class SmsChannel implements Channel {
+    public void deliver(String title, String body) { /* send over SMS */ }
+}
+
+abstract class Notification {               // the abstraction side: what is sent
+    protected final Channel channel;         // the bridge to an implementation
+    Notification(Channel channel) { this.channel = channel; }
+    abstract void send();
+}
+
+class UrgentAlert extends Notification {
+    private final String text;
+    UrgentAlert(Channel channel, String text) { super(channel); this.text = text; }
+    void send() { channel.deliver("URGENT", text); }   // delegate delivery to the channel
+}
+```
+
+The two sides are chosen and combined at the call site:
+
+```java
+Notification alert = new UrgentAlert(new SmsChannel(), "server down");
+```
+
+Each side now grows alone: a new channel is one `Channel` that every notification can use, and a new notification type is one `Notification` that works over every channel. The pairings are formed by composition at runtime, so they never turn into classes.
+
+That is Bridge: when two things vary independently, keep each in its own hierarchy and connect them with a reference — so adding to one never forces new classes in the other.
+
+:::note In your own code
+Reach for it when two dimensions vary independently and one class per combination would otherwise pile up. Which side carries the shared logic and which is the delegated interface is determined by the domain — either side can be either shape. It resembles Strategy — both hold an interface and delegate — but the intent is wider: Strategy swaps a single algorithm, while Bridge pairs a whole abstraction hierarchy with a whole implementation hierarchy, wired once rather than swapped call to call. Unlike Adapter, which reconciles two interfaces that already exist and don't fit, Bridge is designed in from the start to keep the two sides apart.
+:::
+
 ## In one view
 
 - Adapter — converts one class's interface into the one a client expects.
@@ -184,3 +226,4 @@ The roles are a subject interface, the real subject, and a proxy that shares the
 - Facade — puts one simple entry point in front of a complex subsystem.
 - Composite — arranges objects into a tree and treats leaves and groups alike.
 - Proxy — stands in for an object to control access to it.
+- Bridge — splits an abstraction from its implementation so the two vary independently.

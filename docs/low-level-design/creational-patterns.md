@@ -165,6 +165,50 @@ That is Builder: assemble a complex object through a series of steps, and hand b
 The roles are the object being built, its many parts (some optional), and the code assembling it. Reach for it when a constructor would be long or ambiguous, or when a half-built instance must never escape into the rest of the program. The payoff is construction that reads as named steps at the call site, and an object that is valid the moment it exists.
 :::
 
+## Prototype
+
+You have an object configured exactly the way you need it and you want more like it. If the code making the copies uses `new`, it has to name their concrete class and re-supply all the configuration the original already carries; and when that code holds the object only through an interface, it cannot call `new` on it at all.
+
+Prototype makes an object responsible for copying itself. It exposes a method that returns a new instance with the same state, so callers duplicate an existing object instead of constructing a fresh one:
+
+```java
+interface Shape {
+    Shape copy();                          // each shape knows how to duplicate itself
+    void moveBy(int dx, int dy);
+}
+
+class Circle implements Shape {
+    private int x, y, radius;
+    private Color fill;
+
+    Circle(Circle source) {                // copy constructor: state from the original
+        this.x = source.x; this.y = source.y;
+        this.radius = source.radius; this.fill = source.fill;
+    }
+
+    public Shape copy() { return new Circle(this); }
+    public void moveBy(int dx, int dy) { x += dx; y += dy; }
+}
+```
+
+A drawing tool duplicating a selection asks each shape to copy itself, never naming the concrete kinds:
+
+```java
+List<Shape> duplicate(List<Shape> selection) {
+    List<Shape> copies = new ArrayList<>();
+    for (Shape s : selection) copies.add(s.copy());   // no instanceof, no new Circle
+    return copies;
+}
+```
+
+The selection may mix circles, rectangles, and polygons; each returns its own kind, and the tool stays free of both their concrete classes and their construction details.
+
+That is Prototype: an object creates new instances by copying itself, so callers duplicate a configured instance without naming its concrete class.
+
+:::note In your own code
+The roles are a prototype interface with a copy method, concrete types that implement it, and a client that duplicates objects it holds only by interface. Reach for it when the copying code doesn't know — or shouldn't depend on — the concrete class, or when copying a ready-made instance is cheaper or less error-prone than constructing one and re-applying its configuration. The one thing to get right is depth: a copy must duplicate the mutable objects held inside it, or the copy and the original will quietly share them.
+:::
+
 ## Singleton
 
 Some resources should exist exactly once in a process — a configuration registry, a connection pool — and be reachable wherever they are needed. A second instance would be wrong, not merely wasteful.
@@ -203,4 +247,5 @@ Builder and Factory Method are the creational patterns worth being fluent in. If
 - Factory Method — defers that choice to subclasses of a shared workflow.
 - Abstract Factory — creates a whole family of related objects from one swappable factory.
 - Builder — assembles a complex object step by step and returns it complete and valid.
+- Prototype — creates new objects by copying a configured instance.
 - Singleton — guarantees a single instance with one point of access, used sparingly.

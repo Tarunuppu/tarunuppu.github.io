@@ -157,6 +157,145 @@ The order of steps is locked in `run`; a new source format overrides only `parse
 
 That is Template Method: fix an algorithm's skeleton in a base method and let subclasses supply the steps that vary.
 
+## Chain of Responsibility
+
+A request has to pass through a series of steps, and any step might handle it or let it move on. An expense needs approval, and the level that can approve depends on the amount — a team lead up to a point, a director above that, a VP beyond that. Written as one method that knows every level, the decision becomes a single branch that has to be edited to change a limit, add a tier, or reorder them:
+
+```java
+Approver approverFor(Expense e) {
+    if (e.amount().isAtMost(Money.of(1_000)))  return teamLead;
+    if (e.amount().isAtMost(Money.of(10_000))) return director;   // one branch that
+    return vp;                                                    // knows every level
+}
+```
+
+Chain of Responsibility gives each handler its own class holding a link to the next. A handler either handles the request or passes it along, and no handler knows the whole sequence:
+
+```java
+abstract class Approver {
+    private Approver next;
+    Approver chainTo(Approver next) { this.next = next; return next; }   // returns next, to chain
+
+    final void handle(Expense e) {
+        if (canApprove(e)) approve(e);
+        else if (next != null) next.handle(e);        // pass it on
+        else throw new IllegalStateException("no approver for " + e);
+    }
+
+    protected abstract boolean canApprove(Expense e);
+    protected abstract void approve(Expense e);
+}
+
+class TeamLead extends Approver {
+    protected boolean canApprove(Expense e) { return e.amount().isAtMost(Money.of(1_000)); }
+    protected void approve(Expense e) { /* record the approval */ }
+}
+```
+
+The chain is assembled once, and the caller hands the request to its front without knowing who will act on it:
+
+```java
+Approver chain = new TeamLead();
+chain.chainTo(new Director()).chainTo(new Vp());
+chain.handle(expense);        // stops at the first handler that can approve
+```
+
+Each handler owns only its own rule and its link forward. Changing a limit, inserting a tier, or reordering the line is a change to one handler or to how the chain is wired — never to a branch that knew them all.
+
+That is Chain of Responsibility: pass a request along a line of handlers, each of which either handles it or forwards it to the next.
+
+## Mediator
+
+Several objects have to coordinate, and left to themselves each ends up holding a reference to every other. In a chat room, a participant who wants to reach the others would keep the full roster and drive the delivery itself:
+
+```java
+class Participant {
+    private final List<Participant> peers;        // every participant holds every other
+    void send(String msg) {
+        for (Participant p : peers) p.receive(msg);   // and runs the broadcast itself
+    }
+}
+```
+
+Everyone knows everyone, the same routing logic is copied into each participant, and adding one means updating every roster. Mediator puts a hub between them: each object talks only to the hub, and the hub holds the logic that routes between them.
+
+```java
+interface ChatRoom {                              // the mediator
+    void join(Participant p);
+    void broadcast(Participant from, String msg);
+}
+
+class Participant {
+    private final String name;
+    private final ChatRoom room;                   // knows only the hub
+    Participant(String name, ChatRoom room) {
+        this.name = name; this.room = room; room.join(this);
+    }
+    void send(String msg)    { room.broadcast(this, msg); }   // hand off to the hub
+    void receive(String msg) { /* display it */ }
+    String name()            { return name; }
+}
+
+class GroupChat implements ChatRoom {
+    private final List<Participant> members = new ArrayList<>();
+    public void join(Participant p) { members.add(p); }
+    public void broadcast(Participant from, String msg) {
+        for (Participant p : members)                 // routing lives here, in one place
+            if (p != from) p.receive(from.name() + ": " + msg);
+    }
+}
+```
+
+Each participant holds one reference — the room — and the routing lives in the room alone. Adding a participant touches only the room; changing how messages flow, whether that is private messages, muting, or history, is a change to the mediator rather than to every object that talks through it.
+
+That is Mediator: route interaction between objects through a central hub, so each one knows only the hub instead of every peer.
+
+## Memento
+
+An object needs to be returned to an earlier state — a saved game reloaded, a transaction rolled back, an edit undone. The direct way is to read the object's fields out to store them and write them back to restore, but that forces the object to expose its internals to whatever holds the saved copy, and every field added later has to be threaded through that external save-and-restore code.
+
+Memento has the object produce a snapshot of its own state as a sealed object and accept one back to restore itself. Whatever holds the snapshot can keep it but cannot look inside or change it:
+
+```java
+class GameState {
+    private int level;
+    private int score;
+    private Point position;
+
+    Snapshot save() {                          // the object makes its own snapshot
+        return new Snapshot(level, score, position);
+    }
+    void restore(Snapshot s) {                 // and restores itself from one
+        this.level = s.level; this.score = s.score; this.position = s.position;
+    }
+
+    static final class Snapshot {              // opaque to everyone but GameState
+        private final int level, score;
+        private final Point position;
+        private Snapshot(int level, int score, Point position) {
+            this.level = level; this.score = score; this.position = position;
+        }
+    }
+}
+```
+
+The code that triggers and stores saves keeps a history of snapshots without ever seeing their contents:
+
+```java
+Deque<GameState.Snapshot> history = new ArrayDeque<>();
+history.push(game.save());        // checkpoint
+// ...play continues...
+game.restore(history.pop());      // roll back to the checkpoint
+```
+
+Only `GameState` can create a `Snapshot` or read one, because the snapshot's fields are private to it. The history holds them as opaque tokens, so it never depends on what a game state contains; adding a field changes `save` and `restore` alone, not the code that stores the checkpoints.
+
+That is Memento: let an object hand out and take back sealed snapshots of its own state, so its history can be saved and restored without exposing what it holds.
+
+:::tip Interview note
+Mediator and Observer both loosen who-talks-to-whom, and interviews lean on the difference. Observer is a one-to-many broadcast in a fixed direction: a subject notifies subscribers that don't know each other or the subject. Mediator is many-to-many coordination through a hub that holds the routing and can send in any direction. Reach for Observer when one thing changes and others must react; reach for Mediator when many things must coordinate and you want their tangled references pulled into one place.
+:::
+
 :::tip Interview note
 A switch on a "type" field is the usual cue for Strategy; a switch on a "status" or "mode" field that also changes behavior is the cue for State. Noticing the switch is often how you find the pattern the question is really asking for.
 :::
@@ -168,3 +307,6 @@ A switch on a "type" field is the usual cue for Strategy; a switch on a "status"
 - State — change behavior by switching the object's current state class.
 - Command — turn an action into an object that can be stored, queued, and undone.
 - Template Method — fix an algorithm's skeleton and let subclasses supply the varying steps.
+- Chain of Responsibility — pass a request along handlers until one handles it.
+- Mediator — route interaction through a hub so objects don't reference each other.
+- Memento — capture and restore an object's state without exposing it.
