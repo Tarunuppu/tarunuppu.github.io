@@ -235,12 +235,14 @@ div[class*='codeBlockTitle'] {
 
 /* ----------------------------------------------------------- admonitions */
 
-/* Infima ships these in saturated green/blue/red, which breaks the
-   one-accent rule. Note/tip/info all fold into the site accent; only warning
-   and danger get their own hue, since there the colour carries meaning. */
+/* Infima ships these in saturated green/blue/red. Recoloured so the hue
+   tracks how often the box appears: note is the default and repeats several
+   times a page, so it stays graphite and recedes into the margin. Tip is
+   occasional and earns teal. Warning and danger keep a hue because there the
+   colour carries meaning. Blue is deliberately absent — it means links. */
 .theme-admonition {
-  --admonition-accent: var(--ifm-color-primary);
-  --admonition-bg: rgba(27, 95, 168, 0.05);
+  --admonition-accent: #4a5260;
+  --admonition-bg: rgba(74, 82, 96, 0.05);
 
   background: var(--admonition-bg);
   /* Infima also tints the body text to match the alert type (green for tip,
@@ -254,6 +256,16 @@ div[class*='codeBlockTitle'] {
   margin: 2rem 0;
 }
 
+.theme-admonition-tip {
+  --admonition-accent: #0f6b6e;
+  --admonition-bg: rgba(15, 107, 110, 0.055);
+}
+
+.theme-admonition-info {
+  --admonition-accent: var(--ifm-color-primary);
+  --admonition-bg: rgba(27, 95, 168, 0.05);
+}
+
 .theme-admonition-warning {
   --admonition-accent: #a1660a;
   --admonition-bg: rgba(161, 102, 10, 0.06);
@@ -265,6 +277,17 @@ div[class*='codeBlockTitle'] {
 }
 
 [data-theme='dark'] .theme-admonition {
+  --admonition-accent: #99a3b3;
+  --admonition-bg: rgba(153, 163, 179, 0.07);
+}
+
+[data-theme='dark'] .theme-admonition-tip {
+  --admonition-accent: #63b2b6;
+  --admonition-bg: rgba(99, 178, 182, 0.08);
+}
+
+[data-theme='dark'] .theme-admonition-info {
+  --admonition-accent: var(--ifm-color-primary);
   --admonition-bg: rgba(138, 180, 240, 0.07);
 }
 
