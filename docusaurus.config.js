@@ -8,6 +8,9 @@ const config = {
   tagline: 'Notes on system design, AI agents, and backend engineering',
   favicon: 'img/favicon.svg',
 
+  // Google's crawler doesn't reliably resolve an SVG-only favicon (it fell
+  // back to a generic globe icon in search results), so PNG/ICO copies are
+  // served explicitly alongside the SVG that browsers use directly.
   headTags: [
     {
       tagName: 'link',
@@ -19,6 +22,72 @@ const config = {
         rel: 'preconnect',
         href: 'https://fonts.gstatic.com',
         crossorigin: 'anonymous',
+      },
+    },
+    {
+      tagName: 'link',
+      attributes: {rel: 'icon', type: 'image/x-icon', href: '/favicon.ico'},
+    },
+    {
+      tagName: 'link',
+      attributes: {
+        rel: 'icon',
+        type: 'image/png',
+        sizes: '16x16',
+        href: '/img/favicon-16.png',
+      },
+    },
+    {
+      tagName: 'link',
+      attributes: {
+        rel: 'icon',
+        type: 'image/png',
+        sizes: '32x32',
+        href: '/img/favicon-32.png',
+      },
+    },
+    {
+      tagName: 'link',
+      attributes: {
+        rel: 'icon',
+        type: 'image/png',
+        sizes: '48x48',
+        href: '/img/favicon-48.png',
+      },
+    },
+    {
+      tagName: 'link',
+      attributes: {
+        rel: 'icon',
+        type: 'image/png',
+        sizes: '96x96',
+        href: '/img/favicon-96.png',
+      },
+    },
+    {
+      tagName: 'link',
+      attributes: {
+        rel: 'icon',
+        type: 'image/png',
+        sizes: '192x192',
+        href: '/img/favicon-192.png',
+      },
+    },
+    {
+      tagName: 'link',
+      attributes: {
+        rel: 'icon',
+        type: 'image/png',
+        sizes: '512x512',
+        href: '/img/favicon-512.png',
+      },
+    },
+    {
+      tagName: 'link',
+      attributes: {
+        rel: 'apple-touch-icon',
+        sizes: '180x180',
+        href: '/img/apple-touch-icon.png',
       },
     },
   ],
