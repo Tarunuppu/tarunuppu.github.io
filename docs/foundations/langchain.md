@@ -4,4 +4,4 @@ sidebar_position: 2
 
 # LangChain
 
-*Placeholder — drop your refactored LangChain notes in here.*
+*This note is under construction — the full write-up is coming soon.*

@@ -6,4 +6,4 @@ sidebar_position: 1
 
 Why go multi-agent, and the three architectures: supervisor, sequential pipeline, and debate.
 
-*Placeholder — hub post for this arc.*
+*This note is under construction — the full write-up is coming soon.*

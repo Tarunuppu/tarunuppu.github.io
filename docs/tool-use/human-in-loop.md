@@ -4,4 +4,4 @@ sidebar_position: 5
 
 # Human-in-the-loop interrupts
 
-*Placeholder — split out from the original overview notes.*
+*This note is under construction — the full write-up is coming soon.*

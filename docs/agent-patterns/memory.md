@@ -4,4 +4,4 @@ sidebar_position: 5
 
 # Memory
 
-*Placeholder — this closes the arc since memory applies across all three prior patterns.*
+*This note is under construction — the full write-up is coming soon.*

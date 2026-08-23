@@ -4,4 +4,4 @@ sidebar_position: 3
 
 # LangGraph
 
-*Placeholder — drop your refactored LangGraph notes in here.*
+*This note is under construction — the full write-up is coming soon.*

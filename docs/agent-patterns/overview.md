@@ -6,4 +6,4 @@ sidebar_position: 1
 
 Four recurring shapes for how an agent reasons and acts: React, plan-and-execute, reflection, and memory. Each page below goes deep on one.
 
-*Placeholder — this is the hub post. Link out to each pattern page as you publish it.*
+*This note is under construction — the full write-up is coming soon.*

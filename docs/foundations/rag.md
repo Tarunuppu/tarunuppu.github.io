@@ -4,4 +4,4 @@ sidebar_position: 1
 
 # RAG
 
-*Placeholder — drop your refactored RAG notes in here.*
+*This note is under construction — the full write-up is coming soon.*

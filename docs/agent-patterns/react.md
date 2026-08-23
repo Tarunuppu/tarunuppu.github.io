@@ -4,4 +4,4 @@ sidebar_position: 2
 
 # React pattern
 
-*Placeholder — drop your refactored React pattern notes in here.*
+*This note is under construction — the full write-up is coming soon.*

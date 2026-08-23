@@ -4,4 +4,4 @@ sidebar_position: 3
 
 # Sequential pipeline / handoff
 
-*Placeholder — drop your refactored notes in here.*
+*This note is under construction — the full write-up is coming soon.*

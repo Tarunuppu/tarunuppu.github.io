@@ -4,4 +4,4 @@ sidebar_position: 2
 
 # Supervisor / orchestrator-worker
 
-*Placeholder — drop your refactored notes in here.*
+*This note is under construction — the full write-up is coming soon.*
