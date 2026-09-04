@@ -12,3 +12,4 @@ Working notes on system design, AI agents, and backend engineering, written up p
 - **[Agent patterns](/agent-patterns/overview)** — React, plan-and-execute, reflection, memory
 - **[Multi-agent](/multi-agent/overview)** — supervisor, sequential pipeline, debate
 - **[Tool use](/tool-use/overview)** — function calling, MCP, graph state machines, human-in-the-loop
+- **[CI/CD](/ci-cd/overview)** — the commit-to-deploy pipeline, GitHub Actions, Jenkins

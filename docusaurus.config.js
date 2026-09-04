@@ -205,6 +205,7 @@ const config = {
               {label: 'Multi-agent', to: '/multi-agent/overview'},
               {label: 'Tool use', to: '/tool-use/overview'},
               {label: 'Low-level design', to: '/low-level-design/oop-foundations'},
+              {label: 'CI/CD', to: '/ci-cd/overview'},
             ],
           },
           {
