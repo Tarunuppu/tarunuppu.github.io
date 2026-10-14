@@ -1,0 +1,5 @@
+{
+  "label": "System design",
+  "position": 7,
+  "link": { "type": "generated-index", "description": "A request's life from the browser inward, then what breaks when the system has to scale — the building blocks first, then the patterns that combine them under pressure." }
+}

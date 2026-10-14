@@ -322,6 +322,206 @@ div[class*='codeBlockTitle'] {
   margin-bottom: 0;
 }
 
+/* -------------------------------------------------------------- figures */
+
+/* Inline SVG diagrams. Kept near-monochrome to sit with the site's greyscale
+   mermaid: strokes and text use currentColor (so they flip with the theme),
+   fills are low-opacity currentColor, and the one accent is the link colour. */
+.diagram {
+  margin: 2rem auto;
+  text-align: center;
+}
+
+.diagram svg {
+  max-width: 100%;
+  height: auto;
+}
+
+.diagram figcaption {
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  color: var(--ink-faint);
+  margin-top: 0.6rem;
+}
+
+.diagram .d-fill {
+  fill: currentColor;
+  fill-opacity: 0.05;
+}
+
+.diagram .d-stroke {
+  stroke: currentColor;
+  fill: none;
+}
+
+.diagram .d-accent {
+  stroke: var(--ifm-color-primary);
+  fill: var(--ifm-color-primary);
+}
+
+/* Accent lines/arcs: stroked, never filled — so an open arc stays a curve and
+   isn't auto-closed into a filled shape the way .d-accent (fill set) would. */
+.diagram .d-accent-stroke {
+  stroke: var(--ifm-color-primary);
+  fill: none;
+}
+
+.diagram .d-label {
+  fill: currentColor;
+  font-family: var(--font-mono, var(--ifm-font-family-monospace));
+}
+
+.diagram .d-text {
+  fill: var(--ink-muted);
+  font-family: var(--font-sans);
+}
+
+/* --------------------------------------------------------------- topics */
+
+/* A row of concept chips under a lesson title: the title is evocative, these
+   say plainly what the reader will learn. Sans, low-contrast, so they read as
+   apparatus beneath the serif heading rather than competing with it. */
+.topics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin: -0.6rem 0 2.4rem;
+}
+
+.topic {
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  line-height: 1.4;
+  color: var(--ink-muted);
+  background: var(--ifm-code-background);
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  padding: 0.2rem 0.62rem;
+}
+
+/* ------------------------------------------------------------ sidenotes */
+
+/* A third channel beside prose and admonitions: good-to-have clarifications
+   pulled out of the main flow so the argument stays short. On a wide screen
+   the note sits in the right gutter next to its marker; on a narrow one the
+   marker is a tap target that expands the note inline. Lessons that use these
+   set hide_table_of_contents:true in frontmatter so the gutter is free. */
+
+/* The whole mechanism is a counter: one tick per note, read in two places. */
+.markdown {
+  counter-reset: sidenote;
+}
+
+.sidenote-wrap {
+  counter-increment: sidenote;
+}
+
+/* The in-text marker: a small superscript number, in sans so it reads as
+   apparatus rather than part of the sentence. */
+.sidenote-ref {
+  cursor: pointer;
+}
+
+.sidenote-ref::after {
+  content: counter(sidenote);
+  font-family: var(--font-sans);
+  font-size: 0.68em;
+  font-weight: 600;
+  line-height: 1;
+  color: var(--ifm-color-primary);
+  vertical-align: super;
+  margin-left: 0.1em;
+  padding: 0 0.12em;
+}
+
+.sidenote-ref:hover::after {
+  color: var(--ifm-link-hover-color);
+}
+
+/* The checkbox only drives the mobile expand/collapse — never shown. */
+.sidenote-toggle {
+  display: none;
+}
+
+/* Desktop: float into the right gutter, numbered to match the marker.
+   A lesson hides its TOC (hide_table_of_contents), which leaves its content
+   column as the only child of the row. On a wide screen we treat the reading
+   column plus its note gutter as one block and centre it, so the page reads as
+   a balanced text block with a margin — not text pinned to the left with a
+   large empty right — whether or not a given section has notes. */
+@media (min-width: 1321px) {
+  .row > .col:only-child {
+    max-width: 65rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .row > .col:only-child .theme-doc-markdown {
+    max-width: 48rem;
+  }
+}
+
+.sidenote {
+  float: right;
+  clear: right;
+  width: 15rem;
+  margin: 0.25rem -16rem 1.1rem 0;
+  font-family: var(--font-sans);
+  font-size: 0.82rem;
+  line-height: 1.5;
+  color: var(--ink-muted);
+  text-align: left;
+}
+
+.sidenote::before {
+  content: counter(sidenote);
+  font-size: 0.85em;
+  font-weight: 600;
+  color: var(--ifm-color-primary);
+  vertical-align: super;
+  margin-right: 0.3em;
+}
+
+.sidenote code {
+  font-size: 0.92em;
+}
+
+/* Narrow screens: no gutter to float into, so collapse behind the marker and
+   let a tap expand the note where it sits in the text. */
+@media (max-width: 1320px) {
+  .sidenote {
+    float: none;
+    width: auto;
+    max-height: 0;
+    margin: 0;
+    overflow: hidden;
+    display: block;
+    border-left: 2px solid var(--rule-strong);
+    padding: 0 0 0 1rem;
+    opacity: 0;
+    transition: max-height 200ms ease, opacity 200ms ease, margin 200ms ease,
+      padding 200ms ease;
+  }
+
+  .sidenote-toggle:checked ~ .sidenote {
+    max-height: 40rem;
+    opacity: 1;
+    margin: 1rem 0;
+    padding: 0.6rem 0 0.6rem 1rem;
+  }
+
+  /* On mobile the marker gets a subtle box so it reads as tappable. */
+  .sidenote-ref::after {
+    border: 1px solid var(--rule-strong);
+    border-radius: 3px;
+    padding: 0.05em 0.3em;
+    vertical-align: baseline;
+    font-size: 0.72em;
+  }
+}
+
 /* ------------------------------------------------------------- diagrams */
 
 /* Must match the fontFamily handed to mermaid in docusaurus.config.js, so the
@@ -513,4 +713,34 @@ div[class*='codeBlockTitle'] {
   .markdown h2 {
     font-size: 1.4rem;
   }
+}
+
+/* ---------------------------------------------- sidebar two-tier labels */
+
+/* Building-blocks lessons carry a "Concept: Evocative title" sidebar label,
+   split by the swizzled DocSidebarItem/Link into two spans. The concept reads
+   as a small muted uppercase eyebrow stacked above the evocative title. */
+.sidebar-label-split {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+}
+
+.sidebar-label-concept {
+  font-family: var(--font-sans);
+  font-size: 0.66rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--ink-faint);
+}
+
+.sidebar-label-title {
+  line-height: 1.3;
+}
+
+/* Keep the eyebrow legible on the highlighted (active) item. */
+.menu__link--active .sidebar-label-concept {
+  color: inherit;
+  opacity: 0.72;
 }

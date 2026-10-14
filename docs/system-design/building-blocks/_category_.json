@@ -1,0 +1,5 @@
+{
+  "label": "Building blocks",
+  "position": 1,
+  "link": { "type": "generated-index", "description": "The primitives: how a request travels, where data lives, how you find it fast, and how you survive scale and failure." }
+}
