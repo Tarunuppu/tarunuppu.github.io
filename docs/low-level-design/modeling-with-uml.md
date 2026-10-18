@@ -4,6 +4,8 @@ sidebar_position: 3
 
 # Modeling with UML
 
+<Updated date="2026-08-21" />
+
 A design exists in your head as a set of objects and the way they talk to each other. UML is the shared notation for getting that design onto a page precisely enough that someone else — an interviewer, a teammate, or future you — reconstructs the same design you meant. It is easy to over-learn: the full specification has more than a dozen diagram types and a large vocabulary of arrows. Low-level design needs only two of the diagrams and only a handful of the arrows. This note covers that working subset and ignores the rest.
 
 The two diagrams answer two different questions. A class diagram shows *structure* — what types exist and how they relate — frozen, with no notion of time. A sequence diagram shows *behavior* — how particular objects collaborate, in order, to carry out one scenario. Structure is the skeleton; behavior is the skeleton in motion. Most designs need both, because a set of classes can look correct on paper and still collaborate badly at runtime.

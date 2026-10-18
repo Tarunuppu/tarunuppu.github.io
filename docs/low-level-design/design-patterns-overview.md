@@ -4,6 +4,8 @@ sidebar_position: 4
 
 # Design Patterns: Orientation
 
+<Updated date="2026-08-22" />
+
 A design pattern is a named, reusable solution to a problem that keeps recurring in object-oriented design. The weight is on *named*: a pattern is not a library you import or code you paste, but a shape a solution takes, given a name so that two engineers can agree on a design in a single word. Saying "make discounts a Strategy" conveys an entire structure — an interface, interchangeable implementations, a point where one is chosen — that would otherwise take a paragraph to describe. More than anything else, the catalog of patterns is a shared vocabulary.
 
 Patterns are recognized, not invented. Each is a solution many people arrived at independently for the same recurring problem, then wrote down. That origin governs how you should use them: you reach for a pattern when you feel the specific pain it relieves, never as a checklist to apply up front. Applying one before the problem exists adds indirection to buy flexibility you may never need — the most common way a good intention turns into over-engineered code. The skill worth building is not memorizing all of them, but recognizing the smell each one answers.

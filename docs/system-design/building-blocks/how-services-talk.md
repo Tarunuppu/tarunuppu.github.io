@@ -7,6 +7,8 @@ hide_table_of_contents: true
 
 # How services talk to each other
 
+<Updated date="2026-10-10" />
+
 <Topics tags={['HTTP vs API', 'REST', 'GraphQL', 'gRPC', 'Protocol Buffers', 'WebSockets / SSE']} />
 
 The previous lesson ended at HTTP — the envelope a request travels in. But HTTP only says how to *package* a request and a response; it says nothing about what any particular request *means*. You can speak HTTP flawlessly, send a perfectly valid `GET /user/42`, and still get nothing useful back, because the server was never told that `/user/42` is a thing anyone can ask for.

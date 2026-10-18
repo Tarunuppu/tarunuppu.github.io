@@ -4,6 +4,8 @@ sidebar_position: 3
 
 # Packaging: Docker and the Registry
 
+<Updated date="2026-09-14" />
+
 Packaging is the seam between CI and CD. CI has proved a change builds and passes its tests; packaging turns that result into a single, portable unit that will run identically on a developer's laptop, a CI runner, and a production server. The unit that achieves this for most modern services is a **container image**, and Docker is the dominant tool for producing and running it.
 
 ## What a container is

@@ -7,6 +7,8 @@ hide_table_of_contents: true
 
 # When the network splits
 
+<Updated date="2026-10-14" />
+
 <Topics tags={['CAP theorem', 'Consistency', 'Availability', 'Partition tolerance', 'CP vs AP', 'Consistency models', 'Per-feature trade-offs']} />
 
 Every distributed system in this arc — the sharded database, the replicated cache, the hash ring — is many machines pretending to be one. The **CAP theorem** is the law that says how far that pretence can go. It's short, famous, and the thing interviewers reach for to check whether you really understand the deepest trade-off in distributed systems. This lesson is what it actually says, and how to use it.

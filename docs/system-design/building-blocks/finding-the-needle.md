@@ -7,6 +7,8 @@ hide_table_of_contents: true
 
 # Finding the needle
 
+<Updated date="2026-10-11" />
+
 <Topics tags={['Indexes', 'B-tree', 'LSM tree', 'Hash index', 'Geospatial (geohash / R-tree)', 'Inverted index', 'Composite indexes', 'Query planning']} />
 
 Without an index, finding a row means reading every row — the database scans the whole table, start to finish, and throws away everything that doesn't match. That's fine for a hundred rows and ruinous for a hundred million.

@@ -7,6 +7,8 @@ hide_table_of_contents: true
 
 # What happens when you open a web page
 
+<Updated date="2026-10-10" />
+
 <Topics tags={['DNS', 'TCP handshake', 'OSI layers', 'TCP / UDP / QUIC', 'HTTP methods', 'Status codes', 'NAT']} />
 
 You type an address, press enter, and a page appears a fraction of a second later. In that fraction of a second a request leaves your device, crosses your home, your city, and possibly an ocean, finds one specific machine out of the billions on the internet, and comes back with an answer. Almost everyone who builds software relies on this happening and can't actually trace it end to end.

@@ -4,6 +4,8 @@ sidebar_position: 1
 
 # OOP Foundations for Design
 
+<Updated date="2026-08-20" />
+
 The four pillars of object-oriented programming are usually taught as definitions to memorize, which misses what they are for. Each pillar is a decision about change — about which parts of a system are allowed to shift without forcing edits everywhere else. Read this way, each has a *purpose* (the design problem it solves) that is separate from its *mechanism* (the language feature that solves it). Mistaking the mechanism for the purpose is the root of most misuse: the feature gets applied where the problem doesn't exist, and you pay for structure you never needed.
 
 ## Encapsulation

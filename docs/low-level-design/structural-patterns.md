@@ -4,6 +4,8 @@ sidebar_position: 6
 
 # Structural Patterns
 
+<Updated date="2026-08-22" />
+
 Structural patterns are about composition: how to fit objects together into larger structures while keeping the connections between them loose. Where creational patterns deal with making objects, structural patterns deal with wiring the ones you already have — wrapping one object in another, or arranging many into a whole — so that the arrangement can change without the pieces having to. Each pattern below is a different shape of that wiring.
 
 ## Adapter

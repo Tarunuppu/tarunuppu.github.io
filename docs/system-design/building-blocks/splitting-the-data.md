@@ -7,6 +7,8 @@ hide_table_of_contents: true
 
 # Splitting the data
 
+<Updated date="2026-10-12" />
+
 <Topics tags={['Partitioning (horizontal / vertical)', 'Sharding', 'Shard keys', 'Range / hash / directory strategies', 'Hot shards', 'Cross-shard queries', 'Consistency (2PC / saga)']} />
 
 [Spreading the load](./spreading-the-load) solved too much *traffic* by adding more servers. This lesson is the same move for too much *data*. A single database has a ceiling just like a single server does: enough rows, and one machine can't store them all — and every query has to wade through the whole pile to find the handful it wants. The fix is to split the data into smaller pieces: first *inside* one database (**partitioning**), then *across many* (**sharding**). The rest of the lesson is how you split, and what splitting breaks.

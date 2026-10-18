@@ -18,7 +18,7 @@ import isInternalUrl from '@docusaurus/isInternalUrl';
 import IconExternalLink from '@theme/Icon/ExternalLink';
 
 function LinkLabel({label, href}) {
-  const scoped = typeof href === 'string' && href.includes('/building-blocks/');
+  const scoped = typeof href === 'string' && href.includes('/system-design/');
   const match =
     scoped && typeof label === 'string'
       ? label.match(/^([^:]+):\s+(.+)$/s)

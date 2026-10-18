@@ -7,6 +7,8 @@ hide_table_of_contents: true
 
 # Not doing the work twice
 
+<Updated date="2026-10-10" />
+
 <Topics tags={['Cache types', 'CDN', 'Cache-aside', 'Write-through / write-back', 'Read-through', 'Eviction (LRU/LFU/TTL)', 'Cache stampede', 'Hot keys']} />
 
 The fastest work is the work you never do. A **cache** stores the result of something expensive — a database query, a computation, a fetch from far away — so the next request for it gets the answer immediately instead of paying the full cost again. That's the whole idea, and it's one of the highest-leverage moves in system design.

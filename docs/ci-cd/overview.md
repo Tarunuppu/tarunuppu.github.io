@@ -4,6 +4,8 @@ sidebar_position: 1
 
 # The CI/CD Pipeline: End-to-End Flow
 
+<Updated date="2026-09-04" />
+
 ## What CI/CD names
 
 CI/CD is the automated path a code change travels from a commit in a repository to a running deployment, with building, testing, packaging, and releasing performed by tooling rather than by hand. It is two disciplines joined at a seam: CI proves a change is safe to ship, and CD moves the shippable result into an environment.

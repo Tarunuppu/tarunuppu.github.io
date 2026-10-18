@@ -7,6 +7,8 @@ hide_table_of_contents: true
 
 # Spreading the load
 
+<Updated date="2026-10-10" />
+
 <Topics tags={['Vertical vs horizontal scaling', 'Load balancers', 'Client-side LB', 'Layer 4 vs Layer 7', 'Health checks', 'LB algorithms']} />
 
 One server has a ceiling. Enough traffic, and it runs out of CPU, memory, or connections, and requests start to queue or fail. There are only two ways out, and the second one creates the problem this lesson is about.

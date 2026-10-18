@@ -7,6 +7,8 @@ hide_table_of_contents: true
 
 # The hash ring
 
+<Updated date="2026-10-13" />
+
 <Topics tags={['Consistent hashing', 'Hash ring', 'The rehashing problem', 'Virtual nodes', 'Load distribution', 'Hot keys', 'Read replicas / salting']} />
 
 [Splitting the data](./splitting-the-data) ended on a cliffhanger. Hash-based sharding spreads data beautifully — until you add or remove a shard, and `shard = hash(key) % N` reshuffles almost *everything*, because `N` changed. For a system that's growing, that's a dealbreaker: every time you add capacity, nearly all your data has to move at once. **Consistent hashing** is the fix — a different way to map keys to shards that moves only a thin slice of the data when the shard count changes.

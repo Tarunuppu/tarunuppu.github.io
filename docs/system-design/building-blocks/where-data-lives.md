@@ -7,6 +7,8 @@ hide_table_of_contents: true
 
 # Where data lives
 
+<Updated date="2026-10-10" />
+
 <Topics tags={['ACID', 'Normalization', 'Relational / SQL', 'Document DBs', 'Key-value stores', 'Wide-column DBs', 'Graph DBs']} />
 
 Once a request reaches a server, it almost always needs to read or write data — and "the database" is not one thing. Before picking one you answer three questions in order: what guarantees do you need when data changes (ACID), how should the data be shaped (normalized or not), and which family of store fits the way you'll actually read and write it. The last question is really a choice of trade-offs, which is why there are so many kinds.

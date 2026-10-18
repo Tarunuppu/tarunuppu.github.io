@@ -4,6 +4,8 @@ sidebar_position: 2
 
 # CI Engines: GitHub Actions and Jenkins
 
+<Updated date="2026-09-04" />
+
 Both tools run a defined sequence of steps when a trigger fires. They differ on one axis that drives almost everything else: who operates the machine. GitHub Actions is managed by GitHub and native to a GitHub repository; Jenkins is a server you host yourself, tied to no particular version-control system.
 
 ## GitHub Actions: anatomy

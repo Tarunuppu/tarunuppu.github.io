@@ -7,6 +7,8 @@ hide_table_of_contents: true
 
 # Distance and failure
 
+<Updated date="2026-10-10" />
+
 <Topics tags={['Network latency', 'CDN', 'Regional partitioning', 'Timeouts & retries', 'Exponential backoff', 'Idempotency', 'Circuit breakers']} />
 
 The earlier lessons quietly assumed the network just works: the request goes out, the response comes back. Across a real internet it doesn't, for two physical reasons. Distance is one — signals take time to cross the planet, and that time is latency the user feels. Failure is the other — links and machines go down. This lesson is the defensive toolkit for both, plus the second-order problem that failure creates when it spreads.

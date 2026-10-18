@@ -4,6 +4,8 @@ sidebar_position: 5
 
 # Creational Patterns
 
+<Updated date="2026-08-22" />
+
 Creational patterns all attack the same coupling: the `new ConcreteClass()` sitting inside the code that uses the object. That one line ties the caller to a specific class, so changing what gets built means editing the caller. Each pattern below moves creation out of the using code in a different way, so that what is created can change without the code depending on it changing. They range from a plain helper method up to a family-swapping factory; the aim is to pick the lightest one that removes the coupling you actually have.
 
 ## Simple Factory

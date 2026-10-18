@@ -744,3 +744,137 @@ div[class*='codeBlockTitle'] {
   color: inherit;
   opacity: 0.72;
 }
+
+/* ---------------------------------------- category index "syllabus" list */
+
+/* Category landing pages (/category/*) render their children through the
+   swizzled DocCardList + DocCard as a single-column, numbered list of rows:
+   number · (concept eyebrow + title + description) · hover arrow. */
+.note-cards {
+  display: flex;
+  flex-direction: column;
+  margin-top: 1.75rem;
+  border-top: 1px solid var(--rule);
+}
+
+.note-card {
+  display: flex;
+  align-items: baseline;
+  gap: 1.25rem;
+  padding: 1.15rem 0.75rem;
+  border-bottom: 1px solid var(--rule);
+  text-decoration: none !important;
+  color: inherit;
+  transition: background 0.15s ease, padding-left 0.15s ease;
+}
+
+.note-card:hover {
+  background: var(--ifm-menu-color-background-hover);
+  padding-left: 1.15rem;
+}
+
+.note-card__num {
+  flex: none;
+  min-width: 2.2ch;
+  font-family: var(--ifm-font-family-monospace);
+  font-size: 0.95rem;
+  color: var(--ink-faint);
+  transition: color 0.15s ease;
+}
+
+.note-card:hover .note-card__num {
+  color: var(--ifm-color-primary);
+}
+
+.note-card__body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.note-card__eyebrow {
+  font-family: var(--font-sans);
+  font-size: 0.66rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--ink-faint);
+}
+
+.note-card__title {
+  font-family: var(--font-serif);
+  font-size: 1.2rem;
+  font-weight: 600;
+  line-height: 1.25;
+  color: var(--ifm-heading-color);
+}
+
+.note-card__desc {
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: var(--ink-muted);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.note-card__arrow {
+  flex: none;
+  align-self: center;
+  font-size: 1.15rem;
+  color: var(--ink-faint);
+  transition: transform 0.15s ease, color 0.15s ease;
+}
+
+.note-card:hover .note-card__arrow {
+  color: var(--ifm-color-primary);
+  transform: translateX(4px);
+}
+
+/* -------------------------------------------------- page "updated" date */
+
+/* A small, muted creation-date line sitting between a lesson's title and its
+   topic chips — editorial apparatus, low contrast so it never competes. */
+.page-updated {
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  color: var(--ink-faint);
+  margin: -0.35rem 0 1rem;
+}
+
+/* -------------------------------------------------- collapsible details */
+
+/* Docusaurus skins a markdown <details> as a blue "info" alert, which tints the
+   content text and paints a coloured fill. Re-skin it as a quiet, OUTLINED aside
+   — no fill, hairline border — whose inner text uses the ordinary prose colours,
+   so it reads as part of the page in both themes. */
+.markdown details {
+  /* The alert overrides the content text + link colour; put them back. */
+  color: var(--ifm-font-color-base);
+  --ifm-link-color: var(--ifm-color-primary);
+  background: transparent;
+  border: 1px solid var(--rule-strong);
+  border-radius: 8px;
+  box-shadow: none;
+}
+
+.markdown details > summary {
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: 0.92rem;
+  color: var(--ink-muted);
+}
+
+/* The divider Docusaurus draws under the summary when open — make it a hairline. */
+.markdown details[open] > summary {
+  border-bottom-color: var(--rule);
+}
+
+/* Neutralise the disclosure triangle (a border-drawn ::before, blue by default). */
+.markdown details > summary::before {
+  border-left-color: var(--ink-faint);
+}

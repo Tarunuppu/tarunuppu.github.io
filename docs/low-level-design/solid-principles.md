@@ -4,6 +4,8 @@ sidebar_position: 2
 
 # SOLID Principles
 
+<Updated date="2026-08-21" />
+
 SOLID is five rules, one per letter, and they share a single aim: to keep a change local. Each rule attacks a specific kind of coupling — the kind that makes one change force many edits — and each has a *purpose* (the coupling it removes) distinct from its *mechanism* (how you remove it). Learned as slogans they sound interchangeable; learned as five different answers to the question "what forces an edit here?" they stop blurring together.
 
 ## Single Responsibility Principle

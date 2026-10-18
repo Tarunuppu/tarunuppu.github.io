@@ -4,6 +4,8 @@ sidebar_position: 7
 
 # Behavioral Patterns
 
+<Updated date="2026-08-22" />
+
 Behavioral patterns are about interaction: how objects communicate and how responsibility is divided among them at runtime. Creational patterns make objects and structural patterns arrange them; behavioral patterns govern what happens between them once they exist — who calls whom, who decides what, and how work and messages flow. Each pattern below assigns those responsibilities in a different way.
 
 ## Strategy
