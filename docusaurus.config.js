@@ -127,6 +127,10 @@ const config = {
   },
   themes: ['@docusaurus/theme-mermaid'],
 
+  // Restarts the highlight on a diagram that a back-link points at; a CSS
+  // :target rule only animates the first time the hash changes.
+  clientModules: [require.resolve('./src/clientModules/diagramAnchors.js')],
+
   i18n: {
     defaultLocale: 'en',
     locales: ['en'],
@@ -138,7 +142,7 @@ const config = {
       /** @type {import('@docusaurus/preset-classic').Options} */
       ({
         docs: {
-          routeBasePath: '/', // serve docs at the site root, e.g. tarunuppu.dev/agent-patterns
+          routeBasePath: '/', // serve docs at the site root, e.g. tarunuppu.dev/system-design
           sidebarPath: './sidebars.js',
           editUrl: 'https://github.com/Tarunuppu/tarunuppu.github.io/tree/main/',
         },
@@ -200,12 +204,10 @@ const config = {
           {
             title: 'Notes',
             items: [
-              {label: 'Foundations', to: '/foundations/rag'},
-              {label: 'Agent patterns', to: '/agent-patterns/overview'},
-              {label: 'Multi-agent', to: '/multi-agent/overview'},
-              {label: 'Tool use', to: '/tool-use/overview'},
-              {label: 'Low-level design', to: '/low-level-design/oop-foundations'},
-              {label: 'CI/CD', to: '/ci-cd/overview'},
+              {label: 'AI', to: '/category/ai'},
+              {label: 'System design', to: '/category/system-design'},
+              {label: 'Low-level design', to: '/category/low-level-design'},
+              {label: 'CI/CD', to: '/category/cicd'},
             ],
           },
           {

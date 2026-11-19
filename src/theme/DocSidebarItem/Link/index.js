@@ -6,8 +6,9 @@
  * plain text, we split it here and render the concept as a small uppercase
  * eyebrow above the evocative title, so the two read as distinct tiers.
  *
- * Scoped to /building-blocks/ links; every other sidebar item (and any label
- * without the "concept: title" shape) renders as plain text, unchanged.
+ * Scoped to the /system-design/ and /ai/ sections; every other sidebar item
+ * (and any label without the "concept: title" shape) renders as plain text,
+ * unchanged.
  */
 import React from 'react';
 import clsx from 'clsx';
@@ -17,8 +18,11 @@ import Link from '@docusaurus/Link';
 import isInternalUrl from '@docusaurus/isInternalUrl';
 import IconExternalLink from '@theme/Icon/ExternalLink';
 
+const SPLIT_SECTIONS = ['/system-design/', '/ai/'];
+
 function LinkLabel({label, href}) {
-  const scoped = typeof href === 'string' && href.includes('/system-design/');
+  const scoped =
+    typeof href === 'string' && SPLIT_SECTIONS.some((p) => href.includes(p));
   const match =
     scoped && typeof label === 'string'
       ? label.match(/^([^:]+):\s+(.+)$/s)

@@ -1,0 +1,5 @@
+{
+  "label": "RAG",
+  "position": 1,
+  "link": { "type": "generated-index", "description": "Giving an LLM access to knowledge it was never trained on: the retrieval pipeline, its building blocks, and the production fixes that keep it accurate." }
+}

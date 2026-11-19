@@ -14,11 +14,14 @@ import {
   findFirstSidebarItemLink,
 } from '@docusaurus/plugin-content-docs/client';
 
-// Split a "Concept: Title" label into an eyebrow + title, but only for
-// system-design items — their sidebar labels use that shape deliberately.
-// Elsewhere a colon in a title is just punctuation, so leave the title whole.
+// Split a "Concept: Title" label into an eyebrow + title, but only for the
+// sections whose sidebar labels use that shape deliberately (system-design,
+// ai). Elsewhere a colon in a title is just punctuation, so leave it whole.
+const SPLIT_SECTIONS = ['/system-design/', '/ai/'];
+
 function splitLabel(label, href) {
-  const scoped = typeof href === 'string' && href.includes('/system-design/');
+  const scoped =
+    typeof href === 'string' && SPLIT_SECTIONS.some((p) => href.includes(p));
   const m =
     scoped && typeof label === 'string'
       ? label.match(/^([^:]+):\s+(.+)$/s)

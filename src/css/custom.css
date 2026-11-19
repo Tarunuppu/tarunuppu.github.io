@@ -337,6 +337,32 @@ div[class*='codeBlockTitle'] {
   height: auto;
 }
 
+/* A diagram can be a link target: lessons point back at a specific figure
+   ("box ① in the pipeline diagram"). Keep it clear of the sticky navbar when
+   jumped to, and flash a frame so the landing is legible rather than looking
+   like a jump into blank space. */
+.diagram[id] {
+  scroll-margin-top: 6rem;
+  border-radius: 8px;
+  padding: 0.75rem 0.5rem;
+}
+
+/* Driven by src/clientModules/diagramAnchors.js rather than :target, so that
+   clicking the same back-link twice flashes twice. */
+.diagram[id].diagram-flash {
+  animation: diagram-target 2.2s ease-out 1;
+}
+
+@keyframes diagram-target {
+  0%,
+  60% {
+    box-shadow: 0 0 0 2px var(--ifm-color-primary);
+  }
+  100% {
+    box-shadow: 0 0 0 2px transparent;
+  }
+}
+
 .diagram figcaption {
   font-family: var(--font-sans);
   font-size: 0.8rem;

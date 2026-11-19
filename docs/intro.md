@@ -8,8 +8,9 @@ title: Notes
 
 Working notes on system design, AI agents, and backend engineering, written up properly for anyone else working through the same material.
 
-- **[Foundations](/foundations/rag)** — RAG, LangChain, and LangGraph
-- **[Agent patterns](/agent-patterns/overview)** — React, plan-and-execute, reflection, memory
-- **[Multi-agent](/multi-agent/overview)** — supervisor, sequential pipeline, debate
-- **[Tool use](/tool-use/overview)** — function calling, MCP, graph state machines, human-in-the-loop
-- **[CI/CD](/ci-cd/overview)** — the commit-to-deploy pipeline, GitHub Actions, Jenkins
+- **[AI](/category/ai)** — RAG: the retrieval pipeline, and the fixes that keep it accurate in production
+- **[System design](/category/system-design)** — the building blocks, then the patterns that combine them under scale
+- **[Low-level design](/category/low-level-design)** — OOP foundations and the design patterns built on them
+- **[CI/CD](/category/cicd)** — the commit-to-deploy pipeline, GitHub Actions, Jenkins
+
+More on agents, tool use and multi-agent systems is still being written.

@@ -1,0 +1,5 @@
+{
+  "label": "AI",
+  "position": 1,
+  "link": { "type": "generated-index", "description": "Building and reasoning about LLM-powered systems — agent patterns, RAG, tool use, and more." }
+}
